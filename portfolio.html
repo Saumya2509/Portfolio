@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rana Saumya - Portfolio</title>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --text-color: #333;
+            --light-text: #666;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --border-radius: 12px;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="80" r="1" fill="rgba(255,255,255,0.1)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, #fff, #e2e8f0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            color: var(--primary-color);
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+
+        .university-info {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px 30px;
+            border-radius: 30px;
+            display: inline-block;
+            backdrop-filter: blur(10px);
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 12px;
+            min-width: 120px;
+            transition: all 0.3s ease;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            display: block;
+            color: white;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-top: 5px;
+        }
+
+        .stat-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+        }
+
+        nav {
+            background: white;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease, left 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 80%;
+            left: 10%;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        section {
+            margin-bottom: 60px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 4px solid var(--primary-color);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .skill-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .skill-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+        }
+
+        .skill-desc {
+            color: var(--light-text);
+            line-height: 1.8;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background-color: #eef2ff;
+            border-radius: 4px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            transition: width 1s ease-in-out;
+        }
+
+        .skill-level {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+        }
+
+        .project-img {
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .project-content {
+            padding: 25px;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+        }
+
+        .project-desc {
+            color: var(--light-text);
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .tech-tag {
+            background-color: #eef2ff;
+            color: var(--primary-color);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: #f1f5f9;
+            color: var(--text-color);
+            border: 1px solid #e2e8f0;
+        }
+
+        .btn-secondary:hover {
+            background-color: #e2e8f0;
+        }
+
+        .contact-container {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .contact-item {
+            text-align: left;
+        }
+
+        .contact-label {
+            font-size: 0.9rem;
+            color: var(--light-text);
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .contact-value {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
+
+        footer {
+            background-color: var(--text-color);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 60px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .social-link:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-container {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .projects-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="profile-img">👨🏻‍💻</div>
+            <h1>Rana Saumya</h1>
+            <p class="subtitle">Full Stack Web Developer & Data Analyst</p>
+            <div class="university-info">
+                <strong>Sarvajanik University</strong> | AI & DS Branch | 2nd Semester
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-container">
+            <a href="#home" class="nav-link">Home</a>
+            <a href="#skills" class="nav-link">Skills</a>
+            <a href="#projects" class="nav-link">Projects</a>
+            <a href="#contact" class="nav-link">Contact</a>
+        </div>
+    </nav>
+
+    <main>
+        <section id="skills">
+            <h2>Skills & Expertise</h2>
+            <div class="skills-container">
+                <div class="skill-card">
+                    <div class="skill-icon">💻</div>
+                    <h3 class="skill-title">Full Stack Web Development</h3>
+                    <p class="skill-desc">
+                        Experienced in building responsive and interactive web applications using modern technologies. 
+                        Skilled in both frontend and backend development with a focus on user experience and performance.
+                    </p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 85%"></div>
+                    </div>
+                    <span class="skill-level">Advanced</span>
+                </div>
+                
+                <div class="skill-card">
+                    <div class="skill-icon">📊</div>
+                    <h3 class="skill-title">Data Analysis</h3>
+                    <p class="skill-desc">
+                        Proficient in data analysis and visualization techniques. Experienced in extracting insights 
+                        from complex datasets and presenting them in meaningful ways.
+                    </p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 75%"></div>
+                    </div>
+                    <span class="skill-level">Intermediate</span>
+                </div>
+                
+                <div class="skill-card">
+                    <div class="skill-icon">🔧</div>
+                    <h3 class="skill-title">Problem Solving</h3>
+                    <p class="skill-desc">
+                        Strong analytical and problem-solving skills with the ability to think critically and 
+                        develop innovative solutions to complex challenges.
+                    </p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 90%"></div>
+                    </div>
+                    <span class="skill-level">Expert</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2>Projects</h2>
+            <div class="projects-container">
+                <div class="project-card">
+                    <div class="project-img">👥</div>
+                    <div class="project-content">
+                        <h3 class="project-title">Human Management Resource System</h3>
+                        <p class="project-desc">
+                            A comprehensive HR management system designed to streamline employee data management, 
+                            attendance tracking, and performance evaluation processes for organizations.
+                        </p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">HTML</span>
+                            <span class="tech-tag">CSS</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Local Storage</span>
+                        </div>
+                        <div class="project-links">
+                            <button class="btn btn-primary" onclick="showProjectDetails('hr-system')">View Details</button>
+                           <a target="_blank" href="https://odoo-gcet-ignite.vercel.app/signin"> <button class="btn btn-secondary" >Live Demo</button></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-img">🌤️</div>
+                    <div class="project-content">
+                        <h3 class="project-title">Weather Web API</h3>
+                        <p class="project-desc">
+                            A dynamic weather application that fetches real-time weather data from external APIs, 
+                            providing users with current conditions, forecasts, and location-based weather information.
+                        </p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">HTML</span>
+                            <span class="tech-tag">CSS</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">API Integration</span>
+                            <span class="tech-tag">Async/Await</span>
+                        </div>
+                        <div class="project-links">
+                            <button class="btn btn-primary" onclick="showProjectDetails('weather-app')">View Details</button>
+                           <a target="_blank" href="https://weather-forecast-web-app-rose.vercel.app/"> <button class="btn btn-secondary" >Live Demo</button></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-img">🎓</div>
+                    <div class="project-content">
+                        <h3 class="project-title">Alumni Connect</h3>
+                        <p class="project-desc">
+                            A networking platform designed to connect alumni from Sarvajanik University, 
+                            facilitating professional networking, mentorship opportunities, and career guidance.
+                        </p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">HTML</span>
+                            <span class="tech-tag">CSS</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Responsive Design</span>
+                            <span class="tech-tag">User Authentication</span>
+                        </div>
+                        <div class="project-links">
+                            <button class="btn btn-primary" onclick="showProjectDetails('alumni-connect')">View Details</button>
+                           <a target="_blank" href="https://alumni-connect-rust.vercel.app/home"> <button class="btn btn-secondary" >Live Demo</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Contact Me</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-label">Email</div>
+                        <div class="contact-value">saumyarana2509@gmail</div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-label">Phone</div>
+                        <div class="contact-value">+91 9016858681</div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-label">Location</div>
+                        <div class="contact-value">Bharuch, Gujarat, India</div>
+                    </div>
+                </div>
+                <p style="color: var(--light-text); margin-bottom: 20px;">
+                    Currently exploring opportunities in web development and data analysis where I can contribute effectively, grow professionally, and collaborate on innovative projects.
+                </p>
+                
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="social-links">
+            <a  target="_blank" href="https://www.linkedin.com/in/saumya-rana-532b08375/" class="social-link">in</a>
+            <a target="_blank" href="https://github.com/Saumya2509" class="social-link">GH</a>
+            
+            <a href="mailto:saumyarana2509@gmail.com" class="social-link">📧</a>
+        </div>
+        <p>&copy; 2026 Rana Saumya. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = `fadeIn 0.8s ease forwards`;
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Project details function
+        function showProjectDetails(projectId) {
+            const projectDetails = {
+                'hr-system': {
+                    title: 'Human Management Resource System',
+                    description: 'A comprehensive HR management system with features including employee database management, attendance tracking, leave management, and performance evaluation. Built with a focus on user-friendly interface and data security.',
+                    features: ['Employee Profile Management', 'Attendance Tracking', 'Leave Management', 'Performance Reviews', 'Data Export/Import']
+                },
+                'weather-app': {
+                    title: 'Weather Web API',
+                    description: 'Real-time weather application that provides current weather conditions, 5-day forecasts, and location-based weather information. Features include search by city, weather alerts, and beautiful visualizations.',
+                    features: ['Real-time Weather Data', '5-Day Forecast', 'Location-based Weather', 'Weather Alerts', 'Responsive Design']
+                },
+                'alumni-connect': {
+                    title: 'Alumni Connect',
+                    description: 'A professional networking platform for Sarvajanik University alumni. Features include profile creation, networking tools, job postings, mentorship programs, and event management.',
+                    features: ['Alumni Profiles', 'Professional Networking', 'Job Board', 'Mentorship Programs', 'Event Management', 'Discussion Forums']
+                }
+            };
+
+            const project = projectDetails[projectId];
+            if (project) {
+                alert(`${project.title}\n\nDescription:\n${project.description}\n\nKey Features:\n- ${project.features.join('\n- ')}`);
+            }
+        }
+
+        // Add some interactive elements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add hover effects to project cards
+            const projectCards = document.querySelectorAll('.project-card');
+            projectCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+
+            // Add click effect to buttons
+            const buttons = document.querySelectorAll('.btn');
+            buttons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 150);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
