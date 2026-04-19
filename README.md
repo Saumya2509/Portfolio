@@ -25,7 +25,7 @@ The site includes animated UI elements, smooth scroll behavior, and responsive d
 ✔ Animated scroll and transitions
 ✔ Contact section with email and social links
 ✔ Fully responsive layout for all devices
-dewknde
+
 📦 Tech Stack
 Technology	Purpose
 HTML	Structure
